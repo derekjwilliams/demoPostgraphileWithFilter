@@ -17,7 +17,7 @@ const dbSchema = process.env.SCHEMA_NAMES
   : "public";
 
 const pgPool = new pg.Pool({
-  connectionString: (process.env.DATABASE_URL || 'postgres://USERNAME:PASSWORD@localhost:5432/DB'),
+  connectionString: (process.env.DATABASE_URL || 'postgres://localcoreapi:localcoreapi@localhost:5432/localcoreapi'),
 });
 
 console.log(JSON.stringify(pgPool))
