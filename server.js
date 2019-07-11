@@ -8,6 +8,7 @@ const postGraphileOptions = {
   //jwtSecret: process.env.JWT_SECRET || String(Math.random())
   appendPlugins: [ConnectionFilterPlugin],
   graphql: true,
+  graphiql: true,
   dynamicJson: true,
   classicIds: true,
 };
@@ -17,7 +18,7 @@ const dbSchema = process.env.SCHEMA_NAMES
   : "public";
 
 const pgPool = new pg.Pool({
-  connectionString: (process.env.DATABASE_URL || 'postgres://localcoreapi:localcoreapi@localhost:5432/localcoreapi'),
+  connectionString: (process.env.DATABASE_URL || 'postgres://localcoreapi:localcoreapi@127.0.0.1:5432/localcoreapi'),
 });
 
 console.log(JSON.stringify(pgPool))
