@@ -3,23 +3,29 @@ const { ApolloServer } = require("apollo-server");
 
 const { makeSchemaAndPlugin } = require("postgraphile-apollo-server");
 const ConnectionFilterPlugin = require("postgraphile-plugin-connection-filter");
+const  PostgisPlugin = require("@graphile/postgis").default;
+
+console.log(ConnectionFilterPlugin)
+
+// console.log(PostgisPlugin)
 
 const dbSchema = process.env.SCHEMA_NAMES
   ? process.env.SCHEMA_NAMES.split(",")
-  : "public";
+  : "reconciler_merged"; // was "public"
 
 const pgPool = new pg.Pool({
-  connectionString: (process.env.DATABASE_URL || 'postgres://localcoreapi:localcoreapi@127.0.0.1:5432/localcoreapi'),
+   connectionString: (process.env.DATABASE_URL || 'postgres://agrium_data_lake_reconciliation_gis:XXXXXXXX@data-lake-aurora-postgres-gis.cluster-cflm0f1qhus9.us-east-2.rds.amazonaws.com/agrium_data_lake_reconciliation_gis'),   
 });
 
 const postGraphileOptions = {
   //jwtSecret: process.env.JWT_SECRET || String(Math.random())
-  appendPlugins: [ConnectionFilterPlugin],
+  appendPlugins: [ConnectionFilterPlugin, PostgisPlugin],
   graphql: true,
   graphiql: true,
   dynamicJson: true,
   classicIds: true,
-  legacyRelations: 'omit',
+  simpleCollections: 'only',
+  // legacyRelations: 'omit',
 };
 
 console.log(JSON.stringify(pgPool))
