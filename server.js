@@ -1,13 +1,8 @@
 const pg = require("pg");
 const { ApolloServer } = require("apollo-server");
-
 const { makeSchemaAndPlugin } = require("postgraphile-apollo-server");
 const ConnectionFilterPlugin = require("postgraphile-plugin-connection-filter");
 const  PostgisPlugin = require("@graphile/postgis").default;
-
-console.log(ConnectionFilterPlugin)
-
-// console.log(PostgisPlugin)
 
 const dbSchema = process.env.SCHEMA_NAMES
   ? process.env.SCHEMA_NAMES.split(",")
