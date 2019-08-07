@@ -769,6 +769,11 @@ dicer@0.3.0:
   dependencies:
     streamsearch "0.1.2"
 
+dotenv@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.0.0.tgz#ed310c165b4e8a97bb745b0a9d99c31bda566440"
+  integrity sha512-30xVGqjLjiUOArT4+M5q9sYdvuR4riM6yK9wMcas9Vbp6zZa+ocC9dp6QoftuhTPhFAiLK/0C5Ni2nou/Bk8lg==
+
 ecdsa-sig-formatter@1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.10.tgz#1c595000f04a8897dfb85000892a0f4c33af86c3"
@@ -907,7 +912,7 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-graphile-build-pg@4.4.1:
+graphile-build-pg@4.4.1, graphile-build-pg@^4.2.0:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/graphile-build-pg/-/graphile-build-pg-4.4.1.tgz#329e79056ba888f29174439c519051e78bb2308c"
   integrity sha512-Itpi3ShIG+KoRYvgSTXDSGvf2sRUIW+WGO3UIWeS9avFWGQvu5VvvEFZrZTFrha+w4mxvZqb+cSvncMx4Pe3rg==
@@ -1422,10 +1427,10 @@ pluralize@^7.0.0:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
   integrity sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==
 
-postgraphile-apollo-server@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/postgraphile-apollo-server/-/postgraphile-apollo-server-0.1.0.tgz#a2c08a2880e80d5d5205d0bb956b8f2ab6bd7aaa"
-  integrity sha512-Izyd/87A1H/zZEkofqCglgssdxkKFOtJsskxcI381uAqXqYtCIQdzW6r9uxIdFhlqU++7sVXwB9JdIZPonFT6A==
+postgraphile-apollo-server@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/postgraphile-apollo-server/-/postgraphile-apollo-server-0.1.1.tgz#27b19c91d23cc7f5ae56a0314783ddbe17badaa2"
+  integrity sha512-3hZrh9aaJ81wIfj1sGbuIfnR3rE9WWQsv8OrHvYg7/MAkDAvtthHkAZvoQHWT320g/rF4cqDVTkHVFhID3ZN0g==
 
 postgraphile-core@4.4.1:
   version "4.4.1"
@@ -1440,6 +1445,13 @@ postgraphile-plugin-connection-filter@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/postgraphile-plugin-connection-filter/-/postgraphile-plugin-connection-filter-1.1.0.tgz#031d8df18654f4f4899669cbe9bc7876bc390a73"
   integrity sha512-pNp7NkwYNo4aHpNpXE1zERygyDpjVWlmxhiVWlL3L0ZTcfnuuCrRIyuMlk7Tjj9+BgNCMdRkE2Ww8SEcm0BQzA==
+
+postgraphile-plugin-nested-mutations@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/postgraphile-plugin-nested-mutations/-/postgraphile-plugin-nested-mutations-1.0.0.tgz#10e873dfe3ad69f2c63a640223f01c65dabd235d"
+  integrity sha512-1zkwp33nteFBzwzmAuqkmh1FXLaCjaQBLlG5RnOczpbjYbTpjQUAgKe1tovqrn4dcXySo8zLKvTD9ZVLZV1sPQ==
+  dependencies:
+    graphile-build-pg "^4.2.0"
 
 postgraphile@^4.4.1:
   version "4.4.1"

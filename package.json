@@ -4,9 +4,11 @@
     "@graphile/postgis": "^0.1.0",
     "apollo-server": "2.2.0-alpha.3",
     "apollo-server-express": "^2.6.3",
+    "dotenv": "^8.0.0",
     "pg": "7.6.0",
     "postgraphile": "^4.4.1",
-    "postgraphile-apollo-server": "0.1.0",
-    "postgraphile-plugin-connection-filter": "^1.1.0"
+    "postgraphile-apollo-server": "0.1.1",
+    "postgraphile-plugin-connection-filter": "^1.1.0",
+    "postgraphile-plugin-nested-mutations": "^1.0.0"
   }
 }

@@ -2,25 +2,28 @@ const pg = require("pg");
 const { ApolloServer } = require("apollo-server");
 const { makeSchemaAndPlugin } = require("postgraphile-apollo-server");
 const ConnectionFilterPlugin = require("postgraphile-plugin-connection-filter");
+const PostGraphileNestedMutations = require('postgraphile-plugin-nested-mutations');
 const  PostgisPlugin = require("@graphile/postgis").default;
 
 const dbSchema = process.env.SCHEMA_NAMES
   ? process.env.SCHEMA_NAMES.split(",")
-  : "reconciler_merged"; // was "public"
+  : ["master_schema"]; // was "public"
 
 const pgPool = new pg.Pool({
-   connectionString: (process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost/reconciliation'),   
+  connectionString: (process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost/reconciliation'),   
 });
 
 const postGraphileOptions = {
   //jwtSecret: process.env.JWT_SECRET || String(Math.random())
-  appendPlugins: [ConnectionFilterPlugin, PostgisPlugin],
+  appendPlugins: [ConnectionFilterPlugin, PostgisPlugin, PostGraphileNestedMutations],
   graphql: true,
   graphiql: true,
   dynamicJson: true,
-  classicIds: true,
+  watchPg: true,
+  //nestedMutationsSimpleFieldNames: true,
+  // classicIds: false,
   simpleCollections: 'only',
-  // legacyRelations: 'omit',
+  legacyRelations: 'omit',
 };
 
 console.log(JSON.stringify(pgPool))
@@ -36,10 +39,11 @@ async function main() {
   // See https://www.apollographql.com/docs/apollo-server/api/apollo-server.html#ApolloServer
   const server = new ApolloServer({
     schema,
-    plugins: [plugin]
+    plugins: [plugin],
+    tracing: true
   });
 
-  const { url } = await server.listen(5000);
+  const { url } = await server.listen(5001);
   console.log(`🚀 Server ready at ${url}/graphql, Graphiql at ${url}/graphiql`);
 }
 
@@ -47,3 +51,25 @@ main().catch(e => {
   console.error(e);
   process.exit(1);
 });
+
+
+
+// CREATE OR REPLACE FUNCTION master_schema.verify_user_org_data(crop_consultant_id bigint, user_org_id uuid, farm_ids uuid[], field_ids uuid[])
+//  RETURNS text
+//  LANGUAGE sql
+// AS $function$
+// select('TODO 2 modify the user_org, farms, and fields data'::text)
+// $function$
+// ;
+
+
+/*
+CREATE OR REPLACE FUNCTION master_schema.verify_user_org_data(crop_consultant_id bigint, user_org_id uuid, farm_ids uuid[], field_ids uuid[])
+ RETURNS text
+ LANGUAGE sql
+AS $function$
+select('TODO 2 modify the user_org, farms, and fields data'::text)
+$function$
+;
+
+*/
