@@ -4,17 +4,18 @@ const { makeSchemaAndPlugin } = require("postgraphile-apollo-server");
 const ConnectionFilterPlugin = require("postgraphile-plugin-connection-filter");
 const PostGraphileNestedMutations = require('postgraphile-plugin-nested-mutations');
 const  PostgisPlugin = require("@graphile/postgis").default;
+const simplifyInflectorPlugin = require('@graphile-contrib/pg-simplify-inflector');
 
 const dbSchema = process.env.SCHEMA_NAMES
   ? process.env.SCHEMA_NAMES.split(",")
   : ["master_schema"]; // was "public"
 
 const pgPool = new pg.Pool({
+  // connectionString: (process.env.DATABASE_URL || 'postgres://agrium_data_lake_reconciliation_gis:69qTRCkpReNAGxziBMak@data-lake-aurora-postgres-gis.cluster-cflm0f1qhus9.us-east-2.rds.amazonaws.com/agrium_data_lake_reconciliation_gis'),   
   connectionString: (process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost/reconciliation'),   
 });
 
 const postGraphileOptions = {
-  //jwtSecret: process.env.JWT_SECRET || String(Math.random())
   appendPlugins: [ConnectionFilterPlugin, PostgisPlugin, PostGraphileNestedMutations],
   graphql: true,
   graphiql: true,
@@ -23,7 +24,22 @@ const postGraphileOptions = {
   //nestedMutationsSimpleFieldNames: true,
   // classicIds: false,
   simpleCollections: 'only',
-  legacyRelations: 'omit',
+  legacyRelations: 'omit'
+  //jwtSecret: process.env.JWT_SECRET || String(Math.random())
+  // appendPlugins: [ConnectionFilterPlugin, PostgisPlugin, PostGraphileNestedMutations, simplifyInflectorPlugin],
+  // graphql: true,
+  // graphiql: true,
+  // dynamicJson: true,
+  // watchPg: true,
+  // graphileBuildOptions: {
+  //   nestedMutationsSimpleFieldNames: true,
+  //   pgSimplifyAllRows: true,
+  //   pgOmitListSuffix: false
+  // },
+  // classicIds: true,
+  // simpleCollections: 'only',
+  // legacyRelations: 'omit',
+  // legacyRelations: 'omit'
 };
 
 console.log(JSON.stringify(pgPool))
@@ -43,7 +59,7 @@ async function main() {
     tracing: true
   });
 
-  const { url } = await server.listen(5001);
+  const { url } = await server.listen(5002);
   console.log(`🚀 Server ready at ${url}/graphql, Graphiql at ${url}/graphiql`);
 }
 

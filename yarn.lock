@@ -36,6 +36,11 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
 
+"@graphile-contrib/pg-simplify-inflector@^5.0.0-beta.1":
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@graphile-contrib/pg-simplify-inflector/-/pg-simplify-inflector-5.0.0-beta.1.tgz#f7e890566d33e8ee6796dab5ec75ff9bca040701"
+  integrity sha512-oE1znqxBgGl6WK7t8sO4okQEqlP+GZ7ZYT4m2EB38GGbT3YuzjHTI8TcxJtDZsLPG3kPvZvB4Uc34Kb0/NGUVQ==
+
 "@graphile/lru@4.4.1-alpha.2", "@graphile/lru@^4.4.1-alpha.2":
   version "4.4.1-alpha.2"
   resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.4.1-alpha.2.tgz#4b5fc0c1203bb45da45fc65e62d2210c30643c2b"
