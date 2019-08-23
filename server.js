@@ -11,7 +11,6 @@ const dbSchema = process.env.SCHEMA_NAMES
   : ["master_schema"]; // was "public"
 
 const pgPool = new pg.Pool({
-  // connectionString: (process.env.DATABASE_URL || 'postgres://agrium_data_lake_reconciliation_gis:69qTRCkpReNAGxziBMak@data-lake-aurora-postgres-gis.cluster-cflm0f1qhus9.us-east-2.rds.amazonaws.com/agrium_data_lake_reconciliation_gis'),   
   connectionString: (process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost/reconciliation'),   
 });
 
